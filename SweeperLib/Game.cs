@@ -25,6 +25,7 @@ namespace Sweeper
             return _board.ToString() + "State: " + _state;
         }
 
+        public Board GetBoard() => _board;
         public GameState GetGameState() => _state;
 
         public void MakeMove(int row, int column)

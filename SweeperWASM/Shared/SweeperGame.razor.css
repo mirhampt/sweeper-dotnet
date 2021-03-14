@@ -1,0 +1,63 @@
+.sweeper {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: #000000a1;
+
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.message {
+    font-size: 1.5rem;
+    color: white;
+    text-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.61);
+}
+
+.new-game {
+    border: 1px solid rgb(189, 196, 202);
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.cell {
+    width: 2rem;
+    height: 2rem;
+
+    border: 1px solid #999;
+    background-color: #666;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+.cell:hover {
+    background-color: #aaa;
+}
+
+.cell.revealed {
+    background-color: #fff;
+}
+
+.mine {
+    color: #d70202;
+}
+.mine > svg {
+    width: 28px;
+    height: 28px;
+}

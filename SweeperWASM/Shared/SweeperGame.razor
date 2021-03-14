@@ -1,0 +1,71 @@
+@using Sweeper
+
+<div class="sweeper text-center">
+    @if (@game.GetGameState() != GameState.InProgress) {
+        <div class="overlay">
+            @if (game.GetGameState() == GameState.Won) {
+                <div class="message won mb-3">
+                    Congratulations! You have found all the mines!
+                </div>
+            } else if (game.GetGameState() == GameState.Lost) {
+                <div class="message lost mb-3">
+                    A mine has exploded! Please try again.
+                </div>
+            }
+
+            <button class="btn btn-primary btn-lg new-game" @onclick=NewGame>New Game</button>
+        </div>
+    }
+
+    <div class="info font-weight-light mb-1">8 mines</div>
+
+    <div class="board">
+        @for (int i = 0; i < game.GetBoard().Rows; i++)
+        {
+            <div class="row">
+                @for (int j = 0; j < game.GetBoard().Columns; j++)
+                {
+                    var row = i;
+                    var col = j;
+                    var isRevealed = game.GetBoard().IsRevealed(row, col);
+
+                    <div class='cell @(isRevealed ? "revealed": "")' @onclick=@(() => CellClicked(row, col))>
+                        @if (isRevealed) {
+                            var value = game.GetBoard().GetCell(row, col);
+                            if (value == 42) {
+                                <div class="mine">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                            } else if (value != 0) {
+                                @value
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="state mt-3 font-weight-bold">@game.GetGameState()</div>
+</div>
+
+@code {
+    private Game game;
+
+    protected override void OnInitialized()
+    {
+        game = new Game();
+    }
+
+    protected void NewGame()
+    {
+        game = new Game();
+    }
+
+    protected void CellClicked(int row, int column)
+    {
+        game.MakeMove(row, column);
+    }
+}
