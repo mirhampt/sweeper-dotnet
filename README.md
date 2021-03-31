@@ -11,6 +11,8 @@ cd SweeperWASM
 dotnet watch run
 ```
 
+Open http://localhost:5000.
+
 ## What is this?
 
 Just a weekend exploration of Blazor WASM. A very simple Mine Sweeper clone.
@@ -20,6 +22,9 @@ Just a weekend exploration of Blazor WASM. A very simple Mine Sweeper clone.
 I don't know C# or dotnet well--I'm sure I made plenty of
 more-awkward-than-necessary decisions (those for loops in SweeperGame). Given
 the time, I might come back and refactor when I'm curious to learn more.
+
+Remove bootstrap. It's included with the default project skeleton for Blazor
+and is certainly not needed for this project.
 
 Also, I crammed everything into one Blazor component. I'd like to come back
 and rework it into a better hierarchy as I would with React.
